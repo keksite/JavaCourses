@@ -1,28 +1,52 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ArrayVector {
     private int vectorLength;
     private int[] vector;
 
+    /**
+     * конструктор которому передается длина массива, которая присваивается массиву;
+     * @param vectorLength длина массива
+     */
     public ArrayVector(int vectorLength) {
         this.vectorLength = vectorLength;
         vector = new int[vectorLength];
     }
 
-    public int getElement(int element) {
-        return vector[element];
+    /**
+     * @param index номер элемента в массивке
+     * @return возвращает элемент по номеру
+     */
+    public int getElement(int index) {
+        return vector[index];
     }
 
-    public void setElement(int index, int element) {
-        vector[index] = element;
+    /**
+     * устанавливает новый элемент
+     * @param index порядковый номер в массиве
+     * @param element новый элемент массива
+     */
+    public String setElement(int index, int element) {
+        if(index<vector.length) {
+            vector[index] = element;
+            return element + " установлен " + " на позицию " + (index +1);
+        }
+        else{
+            return "Индекс больше, чем размер вектора";
+        }
     }
 
+    /**
+     * @return возвращает длину вектора
+     */
     public int getVectorLength() {
         return vectorLength;
     }
 
+    /**
+     * @return возвращает минимальный элемент вектора
+     */
     public int getMin() {
         int indexOfMin = vector[0];
         for (int aVector : vector) {
@@ -33,6 +57,9 @@ public class ArrayVector {
         return indexOfMin;
     }
 
+    /**
+     * @return возвращает максимальный элемент вектора
+     */
     public int getMax() {
         int indexOfMax = vector[0];
         for (int aVector : vector) {
@@ -43,18 +70,26 @@ public class ArrayVector {
         return indexOfMax;
     }
 
+    /**
+     * поиск элемента в массиве
+     * @param element искомый элемент
+     * @return возвращает порядковый номер элемента в массиве
+     */
     public int find(int element) {
         int elementId = -1;
         for (int i = 0; i < vector.length; i++) {
             if (element == vector[i]) {
                 elementId = i;
             } else {
-                elementId = 0;
+                elementId = -1;
             }
         }
         return elementId;
     }
 
+    /**
+     * @return возвращает среднее арифметическое массива
+     */
     public int getAverage() {
         int sum = 0;
         for (int i : vector
@@ -64,6 +99,9 @@ public class ArrayVector {
         return sum / vector.length;
     }
 
+    /**
+     *Сортировка массива по возрастанию
+     */
     public void sort() {
         for (int i = vector.length - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {
@@ -77,21 +115,27 @@ public class ArrayVector {
         for (int element : vector
                 ) {
             System.out.print(element + " ");
-
         }
         System.out.println();
     }
 
+    /**
+     * @return возвращает эвклидову норму чискел в массиве
+     */
     public Double getNorm() {
         Double norm = 0d;
         for (int i : vector
                 ) {
             norm += i * i;
-
         }
         return Math.sqrt(norm);
     }
 
+    /**
+     * метод умножает каждое число массива
+     * @param arrayVector обьект вектор в который входит массив @see ArrayVector.class
+     * @param multiplier умножитель
+     */
     public static void mult(ArrayVector arrayVector, int multiplier) {
 
         for (int i = 0; i < arrayVector.vector.length; i++) {
@@ -99,15 +143,19 @@ public class ArrayVector {
             System.out.print(arrayVector.vector[i] + " ");
         }
         System.out.println();
-
-
     }
 
-    public static void sum(ArrayVector arrayVector, int firstIndex, int secondIndex) {
+    /**
+     * сумма двух элементов массива
+     * @param arrayVector обьект, который хранит массив
+     * @param firstIndex первый элемент массива
+     * @param secondIndex второй элемент массива
+     */
+    public static void sum(int[] arrayVector, int firstIndex, int secondIndex) {
         try {
-            System.out.println(arrayVector.vector[firstIndex] + arrayVector.vector[secondIndex]);
+            System.out.println(arrayVector[firstIndex] + arrayVector[secondIndex]);
         } catch (ArrayIndexOutOfBoundsException e) {
-            if (firstIndex + 1 > arrayVector.vector.length) {
+            if (firstIndex + 1 > arrayVector.length) {
                 System.out.println("первый индекс неверный");
             } else {
                 System.out.println("второй индекс не верный");
@@ -115,6 +163,11 @@ public class ArrayVector {
         }
     }
 
+    /**
+     * Скаярая велечина между двумя массивами
+     * @param firstArrayVector первый массив
+     * @param secondArrayVector второй массив
+     */
     public static void scalarMult(int[] firstArrayVector, int[] secondArrayVector) {
         if (firstArrayVector.length == secondArrayVector.length) {
             int[] scalarVector = new int[firstArrayVector.length];
@@ -125,35 +178,56 @@ public class ArrayVector {
                     ) {
                 System.out.print(scalar + " ");
             }
-
+        }
+        else{
+            System.out.println("Длины массивов не совпадают");
         }
         System.out.println();
     }
 
 
     public static void main(String[] args) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
-            ArrayVector arrayVector = new ArrayVector(Integer.parseInt(reader.readLine()));
+            ArrayVector arrayVector = createVector();
+            int[] secondArrayVector = {4, 5, 2, 6, 1};
+            //
+            System.out.println("замена элемента: "); System.out.println(arrayVector.setElement(1, 10));
+
+            System.out.println("Получем элемент по индексу: " + arrayVector.getElement(1));
+            System.out.println("Поиск индекса элемента: " + arrayVector.find(1));
+            System.out.println("Среднее арифметическое всех элементов: " +arrayVector.getAverage());
+
+            System.out.println("Максимальный элемент массива: " + arrayVector.getMax());
+            System.out.println("Минимальный элемент массива: " + arrayVector.getMin());
+            System.out.println("Сортируем массив: ");arrayVector.sort();
+            System.out.println("Евклидова норма: " + arrayVector.getNorm());
+            System.out.println("Умножение элементов массива на число: ");mult(arrayVector, 3);
+            System.out.print("Cумма двух элементов массива: ");sum(arrayVector.vector, -1, -1);
+            System.out.println("Cкалярная длина вектора: ");scalarMult(arrayVector.vector, secondArrayVector);
+        }
+        catch (Exception e){
+            System.out.println("Что-то пошло не так");
+        }
+    }
+
+    /**
+     * Создание вектора
+     * @return возвращает обьект ArrayVector
+     */
+    public static ArrayVector createVector() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        ArrayVector arrayVector = null;
+        try {
+            arrayVector = new ArrayVector(Integer.parseInt(reader.readLine()));
 
             for (int i = 0; i < arrayVector.getVectorLength(); i++) {
                 arrayVector.setElement(i, Integer.parseInt(reader.readLine()));
             }
-            int[] secondArrayVector = {4, 5, 2, 6, 1};
-            arrayVector.setElement(3, 10);
-            System.out.println(arrayVector.getElement(1));
-            System.out.println(arrayVector.find(1));
-            System.out.println(arrayVector.getAverage());
+            return arrayVector;
 
-            System.out.println(arrayVector.getMax());
-            System.out.println(arrayVector.getMin());
-            arrayVector.sort();
-            System.out.println(arrayVector.getNorm());
-            mult(arrayVector, 3);
-            sum(arrayVector, -1, -1);
-            scalarMult(arrayVector.vector, secondArrayVector);
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("Это не число");
+            return null;
         }
 
 
