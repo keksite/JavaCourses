@@ -6,11 +6,11 @@ public class CreateVector {
         try {
             ArrayVector arrayVector = createVector();
             int[] secondArrayVector = {4, 5, 2, 6, 1};
-            //
+
             System.out.println("замена элемента: "); System.out.println(arrayVector.setElement(1, 10));
 
             System.out.println("Получем элемент по индексу: " + arrayVector.getElement(1));
-            System.out.println("Поиск индекса элемента: " + arrayVector.find(1));
+            System.out.println("Поиск индекса элемента: " + arrayVector.find(6));
             System.out.println("Среднее арифметическое всех элементов: " +arrayVector.getAverage());
 
             System.out.println("Максимальный элемент массива: " + arrayVector.getMax());
@@ -39,12 +39,14 @@ public class CreateVector {
             for (int i = 0; i < arrayVector.getVectorLength(); i++) {
                 arrayVector.setElement(i, Integer.parseInt(reader.readLine()));
             }
+            reader.close();
             return arrayVector;
 
         } catch (Exception e) {
             System.out.println("Это не число");
             return null;
         }
+
 
 
     }

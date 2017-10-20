@@ -84,8 +84,6 @@ public class ArrayVector {
         for (int i = 0; i < vector.length; i++) {
             if (element == vector[i]) {
                 elementId = i;
-            } else {
-                elementId = -1;
             }
         }
         return elementId;
