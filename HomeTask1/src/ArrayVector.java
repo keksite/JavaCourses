@@ -80,13 +80,12 @@ public class ArrayVector {
      * @return возвращает порядковый номер элемента в массиве
      */
     public int find(int element) {
-        int elementId = -1;
         for (int i = 0; i < vector.length; i++) {
             if (element == vector[i]) {
-                elementId = i;
+                return i;
             }
         }
-        return elementId;
+        return -1;
     }
 
     /**
