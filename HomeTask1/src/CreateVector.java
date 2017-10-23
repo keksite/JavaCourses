@@ -21,8 +21,8 @@ public class CreateVector {
             System.out.println("Сортируем массив: ");arrayVector.sort();
             System.out.println("Евклидова норма: " + arrayVector.getNorm());
             System.out.println("Умножение элементов массива на число: ");ArrayVector.mult(arrayVector, 3);
-            System.out.print("Cумма двух элементов массива: ");ArrayVector.sum(arrayVector.getVector(), -1, -1);
-            System.out.println("Cкалярная длина вектора: ");ArrayVector.scalarMult(arrayVector.getVector(), arrayVector2.getVector());
+            System.out.print("Cумма двух элементов массива: ");ArrayVector.sum(arrayVector, -1, -1);
+            System.out.println("Cкалярная длина вектора: ");ArrayVector.scalarMult(arrayVector, arrayVector2);
         }
         catch (Exception e){
             System.out.println("Что-то пошло не так");

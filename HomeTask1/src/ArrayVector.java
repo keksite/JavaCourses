@@ -121,7 +121,7 @@ public class ArrayVector {
     }
 
     /**
-     * @return возвращает эвклидову норму чискел в массиве
+     * @return возвращает эвклидову норму чисел в массиве
      */
     public Double getNorm() {
         Double norm = 0d;
@@ -147,16 +147,16 @@ public class ArrayVector {
     }
 
     /**
-     * сумма двух элементов массива
+     * сумма двух элементов вектора
      * @param arrayVector обьект, который хранит массив
      * @param firstIndex первый элемент массива
      * @param secondIndex второй элемент массива
      */
-    public static void sum(int[] arrayVector, int firstIndex, int secondIndex) {
+    public static void sum(ArrayVector arrayVector, int firstIndex, int secondIndex) {
         try {
-            System.out.println(arrayVector[firstIndex] + arrayVector[secondIndex]);
+            System.out.println(arrayVector.getElement(firstIndex) + arrayVector.getElement(secondIndex));
         } catch (ArrayIndexOutOfBoundsException e) {
-            if (firstIndex + 1 > arrayVector.length) {
+            if (firstIndex + 1 > arrayVector.getVectorLength()) {
                 System.out.println("первый индекс неверный");
             } else {
                 System.out.println("второй индекс не верный");
@@ -165,15 +165,16 @@ public class ArrayVector {
     }
 
     /**
-     * Скаярая велечина между двумя массивами
+     * Скаярая велечина между двумя векторами
      * @param firstArrayVector первый массив
      * @param secondArrayVector второй массив
      */
-    public static void scalarMult(int[] firstArrayVector, int[] secondArrayVector) {
-        if (firstArrayVector.length == secondArrayVector.length) {
-            int[] scalarVector = new int[firstArrayVector.length];
-            for (int i = 0; i < firstArrayVector.length; i++) {
-                scalarVector[i] = firstArrayVector[i] * secondArrayVector[i];
+    public static void scalarMult(ArrayVector firstArrayVector, ArrayVector secondArrayVector) {
+
+        if (firstArrayVector.getVectorLength() == secondArrayVector.getVectorLength()) {
+            int[] scalarVector = new int[firstArrayVector.getVectorLength()];
+            for (int i = 0; i < firstArrayVector.getVectorLength(); i++) {
+                scalarVector[i] = firstArrayVector.getElement(i) * secondArrayVector.getElement(i);
             }
             for (int scalar : scalarVector
                     ) {
