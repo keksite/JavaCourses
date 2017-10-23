@@ -1,12 +1,10 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 public class ArrayVector {
     private int vectorLength;
     private int[] vector;
 
     /**
      * конструктор которому передается длина массива, которая присваивается массиву;
+     *
      * @param vectorLength длина массива
      */
     public ArrayVector(int vectorLength) {
@@ -22,21 +20,21 @@ public class ArrayVector {
         return vector[index];
     }
 
-    public int[] getVector(){
+    public int[] getVector() {
         return vector;
     }
 
     /**
      * устанавливает новый элемент
-     * @param index порядковый номер в массиве
+     *
+     * @param index   порядковый номер в массиве
      * @param element новый элемент массива
      */
     public String setElement(int index, int element) {
-        if(index<vector.length) {
+        if (index < vector.length) {
             vector[index] = element;
-            return element + " установлен " + " на позицию " + (index +1);
-        }
-        else{
+            return element + " установлен " + " на позицию " + (index + 1);
+        } else {
             return "Индекс больше, чем размер вектора";
         }
     }
@@ -76,6 +74,7 @@ public class ArrayVector {
 
     /**
      * поиск элемента в массиве
+     *
      * @param element искомый элемент
      * @return возвращает порядковый номер элемента в массиве
      */
@@ -93,15 +92,14 @@ public class ArrayVector {
      */
     public int getAverage() {
         int sum = 0;
-        for (int i : vector
-                ) {
+        for (int i : vector) {
             sum += i;
         }
         return sum / vector.length;
     }
 
     /**
-     *Сортировка массива по возрастанию
+     * Сортировка массива по возрастанию
      */
     public void sort() {
         for (int i = vector.length - 1; i > 0; i--) {
@@ -113,8 +111,7 @@ public class ArrayVector {
                 }
             }
         }
-        for (int element : vector
-                ) {
+        for (int element : vector) {
             System.out.print(element + " ");
         }
         System.out.println();
@@ -125,8 +122,7 @@ public class ArrayVector {
      */
     public Double getNorm() {
         Double norm = 0d;
-        for (int i : vector
-                ) {
+        for (int i : vector) {
             norm += i * i;
         }
         return Math.sqrt(norm);
@@ -134,8 +130,9 @@ public class ArrayVector {
 
     /**
      * метод умножает каждое число массива
+     *
      * @param arrayVector обьект вектор в который входит массив @see ArrayVector.class
-     * @param multiplier умножитель
+     * @param multiplier  умножитель
      */
     public static void mult(ArrayVector arrayVector, int multiplier) {
 
@@ -148,8 +145,9 @@ public class ArrayVector {
 
     /**
      * сумма двух элементов вектора
+     *
      * @param arrayVector обьект, который хранит массив
-     * @param firstIndex первый элемент массива
+     * @param firstIndex  первый элемент массива
      * @param secondIndex второй элемент массива
      */
     public static void sum(ArrayVector arrayVector, int firstIndex, int secondIndex) {
@@ -166,7 +164,8 @@ public class ArrayVector {
 
     /**
      * Скаярая велечина между двумя векторами
-     * @param firstArrayVector первый массив
+     *
+     * @param firstArrayVector  первый массив
      * @param secondArrayVector второй массив
      */
     public static void scalarMult(ArrayVector firstArrayVector, ArrayVector secondArrayVector) {
@@ -176,12 +175,10 @@ public class ArrayVector {
             for (int i = 0; i < firstArrayVector.getVectorLength(); i++) {
                 scalarVector[i] = firstArrayVector.getElement(i) * secondArrayVector.getElement(i);
             }
-            for (int scalar : scalarVector
-                    ) {
+            for (int scalar : scalarVector) {
                 System.out.print(scalar + " ");
             }
-        }
-        else{
+        } else {
             System.out.println("Длины массивов не совпадают");
         }
         System.out.println();
