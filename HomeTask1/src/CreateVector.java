@@ -1,11 +1,14 @@
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class CreateVector {
     public static void main(String[] args) {
         try {
+            System.out.println("Введите значение первого массива:");
             ArrayVector arrayVector = createVector();
-            int[] secondArrayVector = {4, 5, 2, 6, 1};
+            System.out.println("Введите значение второго массива:");
+            ArrayVector arrayVector2 = createVector();
 
             System.out.println("замена элемента: "); System.out.println(arrayVector.setElement(1, 10));
 
@@ -19,7 +22,7 @@ public class CreateVector {
             System.out.println("Евклидова норма: " + arrayVector.getNorm());
             System.out.println("Умножение элементов массива на число: ");ArrayVector.mult(arrayVector, 3);
             System.out.print("Cумма двух элементов массива: ");ArrayVector.sum(arrayVector.getVector(), -1, -1);
-            System.out.println("Cкалярная длина вектора: ");ArrayVector.scalarMult(arrayVector.getVector(), secondArrayVector);
+            System.out.println("Cкалярная длина вектора: ");ArrayVector.scalarMult(arrayVector.getVector(), arrayVector2.getVector());
         }
         catch (Exception e){
             System.out.println("Что-то пошло не так");
@@ -32,22 +35,25 @@ public class CreateVector {
      */
     public static ArrayVector createVector() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        ArrayVector arrayVector = null;
         try {
-            arrayVector = new ArrayVector(Integer.parseInt(reader.readLine()));
+            System.out.println("Установите длину массива:");
+            ArrayVector arrayVector = new ArrayVector(Integer.parseInt(reader.readLine()));
 
+            System.out.println("Добавьте элементы в массив:");
             for (int i = 0; i < arrayVector.getVectorLength(); i++) {
                 arrayVector.setElement(i, Integer.parseInt(reader.readLine()));
             }
-            reader.close();
             return arrayVector;
 
         } catch (Exception e) {
-            System.out.println("Это не число");
+            e.printStackTrace();
             return null;
         }
 
+    }
 
-
+    @Override
+    public String toString() {
+        return "CreateVector{}";
     }
 }
