@@ -120,12 +120,12 @@ public class ArrayVector {
     /**
      * @return возвращает эвклидову норму чисел в массиве
      */
-    public Double getNorm() {
-        Double norm = 0d;
+    public double getNorm() {
+        int norm = 0;
         for (int i : vector) {
             norm += i * i;
         }
-        return Math.sqrt(norm);
+        return  Math.sqrt(norm);
     }
 
     /**
