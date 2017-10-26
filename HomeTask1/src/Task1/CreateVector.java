@@ -1,5 +1,6 @@
+package Task1;
+
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class CreateVector {
@@ -31,7 +32,7 @@ public class CreateVector {
 
     /**
      * Создание вектора
-     * @return возвращает обьект ArrayVector
+     * @return возвращает обьект Task1.ArrayVector
      */
     public static ArrayVector createVector() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -54,6 +55,6 @@ public class CreateVector {
 
     @Override
     public String toString() {
-        return "CreateVector{}";
+        return "Task1.CreateVector{}";
     }
 }

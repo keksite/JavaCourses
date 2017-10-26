@@ -1,3 +1,5 @@
+package Task1;
+
 public class ArrayVector {
     private int vectorLength;
     private int[] vector;
@@ -18,10 +20,6 @@ public class ArrayVector {
      */
     public int getElement(int index) {
         return vector[index];
-    }
-
-    public int[] getVector() {
-        return vector;
     }
 
     /**
@@ -131,7 +129,7 @@ public class ArrayVector {
     /**
      * метод умножает каждое число массива
      *
-     * @param arrayVector обьект вектор в который входит массив @see ArrayVector.class
+     * @param arrayVector обьект вектор в который входит массив @see Task1.ArrayVector.class
      * @param multiplier  умножитель
      */
     public static void mult(ArrayVector arrayVector, int multiplier) {
