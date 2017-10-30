@@ -10,7 +10,7 @@ public class CreateVector {
         linkedListVector.getAllElements();
         linkedListVector.addElement(Math.random() * 100);
         linkedListVector.getAllElements();
-        System.out.println("Введите значение первого массива:");
+        /*System.out.println("Введите значение первого массива:");
         ArrayVector arrayVector = createVector();
         System.out.println("Введите значение второго массива:");
         ArrayVector arrayVector2 = createVector();
@@ -23,7 +23,7 @@ public class CreateVector {
         System.out.print("Cумма двух элементов массива: ");
         Vectors.sum(arrayVector, -1, -1);
         System.out.println("Cкалярная длина вектора: ");
-        Vectors.scalarMult(arrayVector, arrayVector2);
+        Vectors.scalarMult(arrayVector, arrayVector2);*/
 
     }
 

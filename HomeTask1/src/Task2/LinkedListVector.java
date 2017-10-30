@@ -1,7 +1,6 @@
 package Task2;
 
 public class LinkedListVector implements Vector {
-    private int _size;
     //Ссылка на голову связного списка.
     private Node head = new Node();
     //Текущая длина связного списка.
@@ -11,13 +10,23 @@ public class LinkedListVector implements Vector {
     /*Номер последнего использовавшиегося элемента связного списка. Значение "-1" соответствует голове.*/
     private int currentIndex = -1;
 
+    //Вспомогательный внутренний класс, реализует элемент связного списка.
+    private class Node {
+        //Значение, которое хранит элемент связного списка.
+        double value = Double.NaN;
+        //Ссылка на предыдущий элемент связного списка.
+        Node prev = null;
+        //Ссылка на следующий элемент связного списка.
+        Node next = null;
+
+    }
+
     /*блок инициализации, зацикливающий ссылки головы списка в момент создания объекта.*/ {
         head.prev = head;
         head.next = head;
     }
 
     public LinkedListVector(int _size) {
-        this._size = _size;
         for (int i = 0; i < _size; i++) {
             addElement(Math.random() * 100);
 
@@ -138,13 +147,5 @@ public class LinkedListVector implements Vector {
         }
     }
 
-    //Вспомогательный внутренний класс, реализует элемент связного списка.
-    private class Node {
-        //Значение, которое хранит элемент связного списка.
-        double value = Double.NaN;
-        //Ссылка на предыдущий элемент связного списка.
-        Node prev = null;
-        //Ссылка на следующий элемент связного списка.
-        Node next = null;
-    }
+
 }
