@@ -1,8 +1,9 @@
 package Task2;
 
-public class ArrayVector {
+
+public class ArrayVector implements Vector {
     private int vectorLength;
-    private int[] vector;
+    private double[] vector;
 
     /**
      * конструктор которому передается длина массива, которая присваивается массиву;
@@ -11,13 +12,13 @@ public class ArrayVector {
      */
     public ArrayVector(int vectorLength) {
         this.vectorLength = vectorLength;
-        vector = new int[vectorLength];
+        vector = new double[vectorLength];
     }
 
     /**
      * @return возвращает длину вектора
      */
-    public int getVectorLength() {
+    public int getSize() {
         return vectorLength;
     }
 
@@ -25,7 +26,7 @@ public class ArrayVector {
      * @param index номер элемента в массивке
      * @return возвращает элемент по номеру
      */
-    public int getElement(int index) {
+    public double getElement(int index) {
         return vector[index];
     }
 
@@ -35,12 +36,11 @@ public class ArrayVector {
      * @param index   порядковый номер в массиве
      * @param element новый элемент массива
      */
-    public String setElement(int index, int element) {
+    public void setElement(int index, double element) {
         if (index < vector.length) {
             vector[index] = element;
-            return element + " установлен " + " на позицию " + (index + 1);
         } else {
-            return "Индекс больше, чем размер вектора";
+            System.out.println("Индекс больше, чем размер вектора");
         }
     }
 
@@ -48,8 +48,8 @@ public class ArrayVector {
      * @return возвращает эвклидову норму чисел в массиве
      */
     public double getNorm() {
-        int norm = 0;
-        for (int i : vector) {
+        double norm = 0;
+        for (double i : vector) {
             norm += i * i;
         }
         return Math.sqrt(norm);

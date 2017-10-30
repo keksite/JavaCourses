@@ -1,14 +1,14 @@
 package Task2;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
-public class LinkedListVector {
+public class LinkedListVector implements Vector {
     private int _size;
 
     public LinkedListVector(int _size) {
         this._size = _size;
-        for (int i = 0; i < _size ; i++) {
-            addElement(Math.random() *100);
+        for (int i = 0; i < _size; i++) {
+            addElement(Math.random() * 100);
 
         }
     }
@@ -67,7 +67,7 @@ public class LinkedListVector {
             throw new VectorIndexOutOfBoundsException();
     }
 
-    public double getElement(int index){
+    public double getElement(int index) {
         Node node = null;
         try {
             node = gotoNumber(index);
@@ -79,69 +79,50 @@ public class LinkedListVector {
     }
 
     public void addElement(double element) {
-        size++;
-        currentIndex++;
         Node node = new Node();
         node.value = element;
-        node.prev = current;
         node.next = head;
-        current.next = node;
+        node.prev = head.prev;
+        head.prev.next = node;
         head.prev = node;
-        current = node;
-
+        size++;
     }
-    public void deleteElement(int index){
-        Node node;
-        Node previousNode;
-        Node nextNode;
+
+   /* public void addElement(int index, double element) {
+
         try {
-            if( index == size-1 && index != 0 ){
-
-                node = gotoNumber(index);
-                previousNode = gotoNumber(index -1);
-                previousNode.next = head;
-                head.prev = previousNode;
-                current = previousNode;
-                node.next = null;
-                node.prev = null;
-                size--;
-            }
-            else if ( index == 0 && size == 1){
-
-                current = head;
-                head.prev = head;
-                head.next = head;
-                node = gotoNumber(index);
-                node.next = null;
-                node.prev = null;
-                size --;
-            }
-            else if ( index == 0 && size > 1){
-                node = gotoNumber(index);
-                nextNode = gotoNumber(index + 1);
-                nextNode.prev = head;
-                head.next = nextNode;
-                node.next = null;
-                node.prev = null;
-                size --;
-            }
-            else{
-                previousNode = gotoNumber(index - 1);
-                nextNode = gotoNumber(index + 1);
-                previousNode.next = nextNode;
-                nextNode.prev = previousNode;
-                size --;
-            }
-
-
+            Node node = new Node();
+            node.next = gotoNumber(index);
+            node.prev = gotoNumber(index - 1);
+            gotoNumber(index + 1).prev = node;
+            gotoNumber(index - 1).next = node;
+            node.value = element;
+            size++;
         } catch (VectorIndexOutOfBoundsException e) {
-            System.out.println("Такого индекса нет братишка. Хочешь я тебе лучше поесть принесу?");
+            e.printStackTrace();
+        }
+
+    }*/
+
+    public void deleteElement(int index) {
+        Node node;
+        try {
+            node = gotoNumber(index);
+            node.prev.next = node.next;
+            node.next.prev = node.prev;
+            node.next = null;
+            node.prev = null;
+            currentIndex = -1;
+            current = head;
+            size--;
+        } catch (VectorIndexOutOfBoundsException e) {
+            System.out.println("Такого индекса нет, братишка. Хочешь я тебе лучше поесть принесу?");
         }
     }
 
-    public void getAllElements(){
+    public void getAllElements() {
         String s = "";
-        for (int i = 0; i < size ; i++) {
+        for (int i = 0; i < size; i++) {
             s = s + getElement(i) + " ";
         }
         System.out.println(s);
@@ -156,9 +137,18 @@ public class LinkedListVector {
      */
     public double getNorm() {
         int norm = 0;
-        for (int i = 0; i <size ; i++) {
+        for (int i = 0; i < size; i++) {
             norm += getElement(i) * getElement(i);
         }
-        return  Math.sqrt(norm);
+        return Math.sqrt(norm);
+    }
+
+    public void setElement(int index, double element) {
+        try {
+            Node node = gotoNumber(index);
+            node.value = element;
+        } catch (VectorIndexOutOfBoundsException e) {
+            System.out.println("Такого индекса нет, братишка. Хочешь я тебе лучше поесть принесу?");
+        }
     }
 }
