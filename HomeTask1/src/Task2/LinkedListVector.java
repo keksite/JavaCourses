@@ -1,9 +1,20 @@
 package Task2;
 
-import java.util.LinkedList;
-
 public class LinkedListVector implements Vector {
     private int _size;
+    //Ссылка на голову связного списка.
+    private Node head = new Node();
+    //Текущая длина связного списка.
+    private int size = 0;
+    //Ссылка на последний использовавшийся элемент связного списка.
+    private Node current = head;
+    /*Номер последнего использовавшиегося элемента связного списка. Значение "-1" соответствует голове.*/
+    private int currentIndex = -1;
+
+    /*блок инициализации, зацикливающий ссылки головы списка в момент создания объекта.*/ {
+        head.prev = head;
+        head.next = head;
+    }
 
     public LinkedListVector(int _size) {
         this._size = _size;
@@ -12,31 +23,6 @@ public class LinkedListVector implements Vector {
 
         }
     }
-
-    //Вспомогательный внутренний класс, реализует элемент связного списка.
-    private class Node {
-        //Значение, которое хранит элемент связного списка.
-        double value = Double.NaN;
-        //Ссылка на предыдущий элемент связного списка.
-        Node prev = null;
-        //Ссылка на следующий элемент связного списка.
-        Node next = null;
-    }
-
-    //Ссылка на голову связного списка.
-    private Node head = new Node();
-
-    /*блок инициализации, зацикливающий ссылки головы списка в момент создания объекта.*/ {
-        head.prev = head;
-        head.next = head;
-    }
-
-    //Текущая длина связного списка.
-    private int size = 0;
-    //Ссылка на последний использовавшийся элемент связного списка.
-    private Node current = head;
-    /*Номер последнего использовавшиегося элемента связного списка. Значение "-1" соответствует голове.*/
-    private int currentIndex = -1;
 
     /*Вспомогательный метод доступа к элементу списка.
        Должен использоваться для доступа из всех остальных методов, т.к. реализует механизм "памяти". index - номер требующегося элемента*/
@@ -88,22 +74,6 @@ public class LinkedListVector implements Vector {
         size++;
     }
 
-   /* public void addElement(int index, double element) {
-
-        try {
-            Node node = new Node();
-            node.next = gotoNumber(index);
-            node.prev = gotoNumber(index - 1);
-            gotoNumber(index + 1).prev = node;
-            gotoNumber(index - 1).next = node;
-            node.value = element;
-            size++;
-        } catch (VectorIndexOutOfBoundsException e) {
-            e.printStackTrace();
-        }
-
-    }*/
-
     public void deleteElement(int index) {
         Node node;
         try {
@@ -119,6 +89,22 @@ public class LinkedListVector implements Vector {
             System.out.println("Такого индекса нет, братишка. Хочешь я тебе лучше поесть принесу?");
         }
     }
+
+   /* public void addElement(int index, double element) {
+
+        try {
+            Node node = new Node();
+            node.next = gotoNumber(index);
+            node.prev = gotoNumber(index - 1);
+            gotoNumber(index + 1).prev = node;
+            gotoNumber(index - 1).next = node;
+            node.value = element;
+            size++;
+        } catch (VectorIndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+
+    }*/
 
     public void getAllElements() {
         String s = "";
@@ -150,5 +136,15 @@ public class LinkedListVector implements Vector {
         } catch (VectorIndexOutOfBoundsException e) {
             System.out.println("Такого индекса нет, братишка. Хочешь я тебе лучше поесть принесу?");
         }
+    }
+
+    //Вспомогательный внутренний класс, реализует элемент связного списка.
+    private class Node {
+        //Значение, которое хранит элемент связного списка.
+        double value = Double.NaN;
+        //Ссылка на предыдущий элемент связного списка.
+        Node prev = null;
+        //Ссылка на следующий элемент связного списка.
+        Node next = null;
     }
 }
